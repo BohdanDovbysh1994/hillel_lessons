@@ -14,16 +14,10 @@ def test_human_grow_age(create_custom_human):
     human_2 = create_custom_human(name='Petro', age=105, gender='female')
 
     human_2.grow()
-    human_1.change_name('New_n')
-    human_1.make_friends(human_2)
     with pytest.raises(Exception) as e:
         human_1.gender = 'TTTT'
-        messag = e
-        c = 0
-    h1_friends = human_1.get_friends()
-    c = 0
-
     assert human_1.name == 'Anna', f'\nName is not as expected\nActual: {human_1.name}\nExpected:Anna'
+    assert human_2.name == 'Petro!!!', f'MESSAGE'
 
 
 @pytest.mark.regression_for_linux
