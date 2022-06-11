@@ -11,7 +11,6 @@ logger.setLevel('INFO')
 def _test_method():
     pass
 
-
 @pytest.fixture()
 def human(random_age):
     _test_method()

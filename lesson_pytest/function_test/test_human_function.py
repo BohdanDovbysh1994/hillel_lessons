@@ -10,14 +10,17 @@ logger.setLevel('INFO')
 @pytest.mark.smoke
 @pytest.mark.ui
 def test_human_grow_age(create_custom_human):
-    human_1 = create_custom_human(name='Anna', age=75, gender='male')
+    start_age = 75
+    human_1 = create_custom_human(name='Anna', age=start_age, gender='male')
     human_2 = create_custom_human(name='Petro', age=105, gender='female')
 
     human_2.grow()
     with pytest.raises(Exception) as e:
         human_1.gender = 'TTTT'
-    assert human_1.name == 'Anna', f'\nName is not as expected\nActual: {human_1.name}\nExpected:Anna'
-    assert human_2.name == 'Petro!!!', f'MESSAGE'
+
+    assert human_1.age == start_age + 1, f'\nName is not as expected\nActual: {human_1.name}\nExpected:Anna'
+
+    assert human_2.age == 105, f'MESSAGE'
 
 
 @pytest.mark.regression_for_linux
