@@ -11,6 +11,12 @@ class BasePage:
     def wait_until_element_located(self, locator):
         return WebDriverWait(self._driver, 10).until(EC.presence_of_element_located(locator))
 
+    def wait_until_element_to_be_clickable(self, locator):
+        return WebDriverWait(self._driver, 10).until(EC.element_to_be_clickable(locator))
+
+    def wait_for_element_visibility(self, locator):
+        return WebDriverWait(self._driver, 10).until(EC.visibility_of_element_located(locator))
+
     def click(self, locator):
         element = self.wait_until_element_located(locator)
         element.click()
@@ -27,3 +33,10 @@ class BasePage:
     @property
     def title(self):
         return self._driver.title
+
+    def is_element_visible(self, locator):
+        try:
+            self.wait_for_element_visibility(locator)
+            return True
+        except TimeoutError:
+            return False

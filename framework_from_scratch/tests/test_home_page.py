@@ -10,6 +10,7 @@ def test_login_to_app(get_home_page):
     user_password = 'bohdan'
     home_page = get_home_page
     login_page = home_page.click_sign_in()
-    user_page = login_page.set_user_email(user_email).set_password(user_password).click_login_button()
+    # user_page = login_page.set_user_email(user_email).set_password(user_password).click_login_button()
+    user_page = login_page.login(user_email, user_password)
     assert user_page.title == 'My account - My Store', \
         f'\nUser not logined\nActual title: {user_page.title}, Expected: \'My account - My store\''

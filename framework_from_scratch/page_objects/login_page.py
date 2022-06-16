@@ -22,3 +22,8 @@ class LoginPage(BasePage):
     def click_login_button(self):
         self.click(self.__login_button)
         return self
+
+    def login(self, email, password):
+        self.set_user_email(email)
+        self.set_password(password)
+        self.click_login_button()
