@@ -1,8 +1,11 @@
+import allure
 from selenium.webdriver.common.by import By
 
+from framework_from_scratch.utilities.decorators import auto_steps
 from framework_from_scratch.utilities.web_ui.base_page import BasePage
 
 
+@auto_steps
 class LoginPage(BasePage):
     __email_input = (By.XPATH, "//input[@id='email']")
     __password_input = (By.XPATH, '//input[@id="passwd"]')
@@ -27,3 +30,4 @@ class LoginPage(BasePage):
         self.set_user_email(email)
         self.set_password(password)
         self.click_login_button()
+        return self
